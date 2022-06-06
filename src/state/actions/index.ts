@@ -5,6 +5,11 @@ interface GetWeatherAction {
   payload: Object;
 }
 
+interface getForecast {
+  type: ActionType.GET_FORECAST;
+  payload: Object;
+}
+
 interface GetLonAction {
   type: ActionType.GET_CURRENT_LON;
   payload: number;
@@ -15,4 +20,8 @@ interface GetLatAction {
   payload: number;
 }
 
-export type Action = GetWeatherAction | GetLonAction | GetLatAction;
+export type Action =
+  | GetWeatherAction
+  | GetLonAction
+  | GetLatAction
+  | getForecast;

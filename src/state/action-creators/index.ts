@@ -28,3 +28,12 @@ export const setCurrentLon = (data: number) => {
     });
   };
 };
+
+export const setForecast = (data: Object) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.GET_FORECAST,
+      payload: data,
+    });
+  };
+};

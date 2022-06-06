@@ -6,8 +6,27 @@ export const getWeather = async (
   lon: number,
   callback: Function
 ) => {
-  const URL = `http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${lat},${lon}&aqi=no`;
-  const weather = await axios.get(URL);
+  try {
+    const URL = `http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${lat},${lon}&aqi=no`;
+    const result = await axios.get(URL);
+    callback(result.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  callback(weather.data);
+export const getForecast = async (
+  lat: number,
+  lon: number,
+  callback: Function
+) => {
+  try {
+    const URL = `http://api.weatherapi.com/v1/forecast.json?key=${KEY}&q=${lat},${lon}&aqi=no&days=3`;
+    const result = await axios.get(URL);
+    console.log(URL);
+
+    callback(result.data);
+  } catch (error) {
+    console.log(error);
+  }
 };

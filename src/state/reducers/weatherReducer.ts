@@ -7,6 +7,8 @@ const reducer = (state: any = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.GET_ACTUAL_WEATHER:
       return { ...state, data: action.payload };
+    case ActionType.GET_FORECAST:
+      return { ...state, data: action.payload };
     default:
       return state;
   }
