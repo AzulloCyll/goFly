@@ -43,26 +43,21 @@ export default function App() {
 
       <section></section>
 
-      <Paper
-        elevation={3}
-        sx={{
-          width: 200,
-          height: 200,
-          textAlign: "center",
-        }}
+      <Container
+        maxWidth="xs"
+        sx={{ display: "flex", justifyContent: "center" }}
       >
-        <p>
           <img src={fromRedux.weather.data?.current.condition.icon} alt="" />
-        </p>
+      </Container>
+
+      <Container maxWidth="xs">
+        <p></p>
         <p>
           {fromRedux.weather.data?.location.name},
           {fromRedux.weather.data?.location.country}
         </p>
-        <p>Lat: {fromRedux.coordinates.lat} </p>
+        <p>Lat: {fromRedux.coordinates.lat}</p>
         <p>Lon: {fromRedux.coordinates.lon}</p>
-      </Paper>
-
-      <Container maxWidth="xs">
         <p>{fromRedux.weather.data?.current.condition.text}</p>
         <p>
           Wind: {fromRedux.weather.data?.current.wind_kph} km/h, Gust:{" "}
