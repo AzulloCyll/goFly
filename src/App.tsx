@@ -1,10 +1,19 @@
 import "./App.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "./state";
 import { useEffect } from "react";
+
+//utils
 import { getForecast, getWeather } from "./communication/weatherApi";
 import { findCurrenGPSLocation } from "./communication/getGPS";
 import { bindActionCreators } from "@reduxjs/toolkit";
+
+//components
+import TopNavigation from "./components/TopNavigation";
+import FooterNavigation from "./components/FooterNavigation";
+import Paper from "@mui/material/Paper";
+import Container from "@mui/material/Container";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -25,19 +34,46 @@ export default function App() {
 
   return (
     <div className="App">
-      <p>
-        {fromRedux.weather.data?.location.name},{" "}
-        {fromRedux.weather.data?.location.country}, Lat:{" "}
-        {fromRedux.coordinates.lat}, Lon: {fromRedux.coordinates.lon}
-      </p>
-      <img src={fromRedux.weather.data?.current.condition.icon} alt="" />
-      <p>{fromRedux.weather.data?.current.condition.text}</p>
-      <p>
-        Wind: {fromRedux.weather.data?.current.wind_kph} km/h, Gust:{" "}
-        {fromRedux.weather.data?.current.gust_kph} km/h
-      </p>
+      <header>
+        <form></form>
+        <nav>
+          <TopNavigation />
+        </nav>
+      </header>
 
-      <p>{fromRedux.weather.data?.forecast?.forecastday[2].day.maxtemp_c}</p>
+      <section></section>
+
+      <Paper
+        elevation={3}
+        sx={{
+          width: 200,
+          height: 200,
+          textAlign: "center",
+        }}
+      >
+        <p>
+          <img src={fromRedux.weather.data?.current.condition.icon} alt="" />
+        </p>
+        <p>
+          {fromRedux.weather.data?.location.name},
+          {fromRedux.weather.data?.location.country}
+        </p>
+        <p>Lat: {fromRedux.coordinates.lat} </p>
+        <p>Lon: {fromRedux.coordinates.lon}</p>
+      </Paper>
+
+      <Container maxWidth="xs">
+        <p>{fromRedux.weather.data?.current.condition.text}</p>
+        <p>
+          Wind: {fromRedux.weather.data?.current.wind_kph} km/h, Gust:{" "}
+          {fromRedux.weather.data?.current.gust_kph} km/h
+        </p>
+
+        <p>{fromRedux.weather.data?.forecast?.forecastday[2].day.maxtemp_c}</p>
+      </Container>
+      <footer>
+        <FooterNavigation />
+      </footer>
     </div>
   );
 }
