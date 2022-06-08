@@ -3,16 +3,18 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "./state";
 import { useEffect } from "react";
+import { bindActionCreators } from "@reduxjs/toolkit";
 
 //utils
 import { getForecast, getWeather } from "./communication/weatherApi";
 import { findCurrenGPSLocation } from "./communication/getGPS";
-import { bindActionCreators } from "@reduxjs/toolkit";
 
 //components
 import TopNavigation from "./components/TopNavigation";
 import FooterNavigation from "./components/FooterNavigation";
-import Paper from "@mui/material/Paper";
+import SwipableVievs from "./components/SwipableVievs";
+
+//MUI
 import Container from "@mui/material/Container";
 
 export default function App() {
@@ -30,8 +32,6 @@ export default function App() {
     } else findCurrenGPSLocation(setCurrentLat, setCurrentLon);
   }, [lat, lon]);
 
-  console.log(fromRedux.weather.data);
-
   return (
     <div className="App">
       <header>
@@ -41,31 +41,21 @@ export default function App() {
         </nav>
       </header>
 
-      <section></section>
+      <main>
+        <Container
+          maxWidth="xs"
+          sx={{
+            overflow: "auto",
+            height: "100vh",
+            zIndex: 1,
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          <SwipableVievs />
+        </Container>
+      </main>
 
-      <Container
-        maxWidth="xs"
-        sx={{ display: "flex", justifyContent: "center" }}
-      >
-          <img src={fromRedux.weather.data?.current.condition.icon} alt="" />
-      </Container>
-
-      <Container maxWidth="xs">
-        <p></p>
-        <p>
-          {fromRedux.weather.data?.location.name},
-          {fromRedux.weather.data?.location.country}
-        </p>
-        <p>Lat: {fromRedux.coordinates.lat}</p>
-        <p>Lon: {fromRedux.coordinates.lon}</p>
-        <p>{fromRedux.weather.data?.current.condition.text}</p>
-        <p>
-          Wind: {fromRedux.weather.data?.current.wind_kph} km/h, Gust:{" "}
-          {fromRedux.weather.data?.current.gust_kph} km/h
-        </p>
-
-        <p>{fromRedux.weather.data?.forecast?.forecastday[2].day.maxtemp_c}</p>
-      </Container>
       <footer>
         <FooterNavigation />
       </footer>
