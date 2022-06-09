@@ -1,15 +1,13 @@
 import "./index.css";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom";
 import App from "./App";
 
 import { Provider } from "react-redux";
 import { store } from "./state/index";
 
-const container = document.getElementById("root")!;
-const root = createRoot(container);
-
-root.render(
+ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>
+  </Provider>,
+  document.getElementById("root")
 );

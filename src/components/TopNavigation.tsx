@@ -6,7 +6,6 @@ import Tab from "@mui/material/Tab";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { actionCreators, State } from "../state";
 import { useDispatch, useSelector } from "react-redux";
-import { ConstructionOutlined } from "@mui/icons-material";
 
 export default function TopNavigation() {
   const dispatch = useDispatch();
@@ -35,9 +34,6 @@ export default function TopNavigation() {
       <Tab label="Item Two" />
       <Tab label="Item Three" />
       <Tab label="Item Four" />
-      <Tab label="Item Five" />
-      <Tab label="Item Six" />
-      <Tab label="Item Seven" />
     </Tabs>
   );
 }

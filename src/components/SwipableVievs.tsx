@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { State } from "../state";
 import { useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
 import "swiper/css";
 
 //MUI
@@ -8,19 +9,27 @@ import Container from "@mui/material/Container";
 
 export default function SwipableVievs() {
   const fromRedux = useSelector((state: State) => state);
+  const [myIndex, setMyIndex] = useState(
+    fromRedux.tabControls.topMenuTabsValue
+  );
+
+  const swiperHandler = (e: any) => {};
+
+  useEffect(() => {
+    console.log(fromRedux.tabControls.topMenuTabsValue);
+  }, [fromRedux.tabControls.topMenuTabsValue]);
 
   return (
     <Swiper
-      spaceBetween={0}
-      slidesPerView={1}
-      onSlideChange={(e) => console.log("slide change", e.activeIndex, e)}
-      onSwiper={(swiper: any) => console.log(swiper)}
+      initialSlide={fromRedux.tabControls.topMenuTabsValue}
+      onSlideChange={(e) => swiperHandler(e)}
       style={{
         marginTop: "48px",
         marginBottom: "56px",
         zIndex: 0,
         overflow: "hidden",
         paddingBottom: "16px",
+        minHeight: "100vh",
       }}
     >
       <SwiperSlide style={{ paddingTop: "16px", zIndex: 0 }}>
@@ -50,6 +59,7 @@ export default function SwipableVievs() {
             reprehenderit, necessitatibus soluta. Quibusdam, explicabo at ullam
             fugiat possimus molestias!
           </p>
+
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
             fugit animi, aperiam unde nemo corrupti quidem at enim voluptatum

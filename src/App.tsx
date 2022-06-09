@@ -45,7 +45,7 @@ export default function App() {
         <Container
           maxWidth="xs"
           sx={{
-            overflow: "auto",
+            overflow: "hidden",
             height: "100vh",
             zIndex: 1,
             margin: 0,

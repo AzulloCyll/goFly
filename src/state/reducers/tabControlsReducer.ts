@@ -1,5 +1,5 @@
 const initialState = {
-  topMenuTabsValue: 0,
+  topMenuTabsValue: 2,
   sliderIndexValue: 0,
 };
 
