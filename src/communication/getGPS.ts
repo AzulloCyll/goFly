@@ -5,20 +5,15 @@ interface GPSPos {
   };
 }
 
-export const findCurrenGPSLocation = (
-  setCurrentLat: Function,
-  setCurrentLon: Function
-) => {
+export const findCurrenGPSLocation = (setCurrentCoordinates: Function) => {
   function success(position: GPSPos) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    const { latitude, longitude } = position.coords;
 
     const result = {
       lat: latitude,
       lon: longitude,
     };
-    setCurrentLat(latitude);
-    setCurrentLon(longitude);
+    setCurrentCoordinates(result);
   }
   function error() {
     console.log("Unable to retrieve your location");

@@ -5,10 +5,8 @@ const initialState = {};
 
 const reducer = (state: any = initialState, action: Action) => {
   switch (action.type) {
-    case ActionType.GET_CURRENT_LAT:
-      return { ...state, lat: action.payload };
-    case ActionType.GET_CURRENT_LON:
-      return { ...state, lon: action.payload };
+    case ActionType.SET_COORDINATES:
+      return { ...state, ...action.payload };
     default:
       return state;
   }

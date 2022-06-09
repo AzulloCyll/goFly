@@ -10,18 +10,9 @@ interface getForecast {
   payload: Object;
 }
 
-interface GetLonAction {
-  type: ActionType.GET_CURRENT_LON;
-  payload: number;
+interface GetCoordinatesAction {
+  type: "SET_COORDINATES";
+  payload: { lat: number; lon: number };
 }
 
-interface GetLatAction {
-  type: ActionType.GET_CURRENT_LAT;
-  payload: number;
-}
-
-export type Action =
-  | GetWeatherAction
-  | GetLonAction
-  | GetLatAction
-  | getForecast;
+export type Action = GetWeatherAction | getForecast | GetCoordinatesAction;

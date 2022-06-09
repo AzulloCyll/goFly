@@ -19,8 +19,10 @@ import Container from "@mui/material/Container";
 
 export default function App() {
   const dispatch = useDispatch();
-  const { setWeather, setCurrentLat, setCurrentLon, setForecast } =
-    bindActionCreators(actionCreators, dispatch);
+  const { setWeather, setCurrentCoordinates, setForecast } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   const fromRedux = useSelector((state: State) => state);
   const { lat, lon } = fromRedux.coordinates;
@@ -29,7 +31,7 @@ export default function App() {
     if (lat && lon) {
       getWeather(lat, lon, setWeather);
       getForecast(lat, lon, setForecast);
-    } else findCurrenGPSLocation(setCurrentLat, setCurrentLon);
+    } else findCurrenGPSLocation(setCurrentCoordinates);
   }, [lat, lon]);
 
   return (
