@@ -18,16 +18,10 @@ export default function TopNavigation() {
   };
 
   const { activeValue } = fromRedux.tabControls;
-  const { forecastday } = fromRedux.weather.data?.forecast ?? {};
+  const { forecastday } = fromRedux.weather.forecast ?? {};
 
   return (
-    <Tabs
-      value={activeValue}
-      onChange={handleChange}
-      variant="fullWidth"
-      scrollButtons="auto"
-      aria-label="scrollable auto tabs example"
-    >
+    <Tabs value={activeValue} onChange={handleChange} variant="fullWidth">
       {forecastday?.map((item: any, index: number) => {
         return <Tab label={item.date} key={index} />;
       })}

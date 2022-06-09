@@ -11,7 +11,7 @@ interface getForecast {
 }
 
 interface GetCoordinatesAction {
-  type: "SET_COORDINATES";
+  type: ActionType.SET_COORDINATES;
   payload: { lat: number; lon: number };
 }
 

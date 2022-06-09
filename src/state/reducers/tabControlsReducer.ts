@@ -1,5 +1,5 @@
 const initialState = {
-  activeValue: 2,
+  activeValue: 0,
 };
 
 const reducer = (state: any = initialState, action: any) => {

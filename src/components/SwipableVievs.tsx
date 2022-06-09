@@ -34,7 +34,6 @@ export default function SwipableVievs() {
   };
 
   const { weather } = fromRedux;
-  const { data } = weather;
 
   return (
     <SwipeableViews
@@ -42,7 +41,7 @@ export default function SwipableVievs() {
       onChangeIndex={(value: number) => handleChangeIndex(value)}
     >
       <div style={{ ...styles.slide, ...styles.slide1 }}>
-        <img src={data?.current.condition.icon} alt="" />
+        <img src={weather?.current?.condition.icon} alt="" />
       </div>
       <div style={{ ...styles.slide, ...styles.slide2 }}>
         <p>
