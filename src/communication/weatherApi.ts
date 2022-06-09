@@ -21,7 +21,7 @@ export const getForecast = async (
   callback: Function
 ) => {
   try {
-    const URL = `http://api.weatherapi.com/v1/forecast.json?key=${KEY}&q=${lat},${lon}&aqi=no&days=3`;
+    const URL = `http://api.weatherapi.com/v1/forecast.json?key=${KEY}&q=${lat},${lon}&aqi=no&days=4`;
     const result = await axios.get(URL);
     console.log(URL);
 

@@ -9,31 +9,28 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function TopNavigation() {
   const dispatch = useDispatch();
-  const { setTopMenuIndexValue, setSliderIndex } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const { setCurrentActiveView } = bindActionCreators(actionCreators, dispatch);
 
   const fromRedux = useSelector((state: State) => state);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setTopMenuIndexValue(newValue);
-    setSliderIndex(newValue);
+    setCurrentActiveView(newValue);
   };
+
+  const { activeValue } = fromRedux.tabControls;
+  const { forecastday } = fromRedux.weather.data?.forecast ?? {};
 
   return (
     <Tabs
-      value={fromRedux.tabControls.topMenuTabsValue}
+      value={activeValue}
       onChange={handleChange}
-      variant="scrollable"
+      variant="fullWidth"
       scrollButtons="auto"
       aria-label="scrollable auto tabs example"
-      sx={{ position: "fixed", backgroundColor: "white", zIndex: 2000 }}
     >
-      <Tab label="Today" />
-      <Tab label="Item Two" />
-      <Tab label="Item Three" />
-      <Tab label="Item Four" />
+      {forecastday?.map((item: any, index: number) => {
+        return <Tab label={item.date} key={index} />;
+      })}
     </Tabs>
   );
 }

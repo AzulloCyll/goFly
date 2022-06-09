@@ -38,19 +38,10 @@ export const setForecast = (data: Object) => {
   };
 };
 
-export const setTopMenuIndexValue = (data: number) => {
+export const setCurrentActiveView = (data: number) => {
   return (dispatch: Dispatch<any>) => {
     dispatch({
-      type: "SET_TOPMENU_TAB_INDEX",
-      payload: data,
-    });
-  };
-};
-
-export const setSliderIndex = (data: number) => {
-  return (dispatch: Dispatch<any>) => {
-    dispatch({
-      type: "SET_SLIDER_INDEX_VALUE",
+      type: "SET_ACTIVE_VIEW",
       payload: data,
     });
   };

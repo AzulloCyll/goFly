@@ -12,6 +12,11 @@ export const findCurrenGPSLocation = (
   function success(position: GPSPos) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
+
+    const result = {
+      lat: latitude,
+      lon: longitude,
+    };
     setCurrentLat(latitude);
     setCurrentLon(longitude);
   }
