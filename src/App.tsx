@@ -10,7 +10,7 @@ import { getForecast, getWeather } from "./communication/weatherApi";
 import { findCurrenGPSLocation } from "./communication/getGPS";
 
 //components
-import TopNavigation from "./components/TopNavigation";
+import Header from "./components/Header";
 import FooterNavigation from "./components/FooterNavigation";
 import SwipableVievs from "./components/SwipableVievs";
 
@@ -36,12 +36,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <header>
-        <form></form>
-        <nav>
-          <TopNavigation />
-        </nav>
-      </header>
+      <Header />
 
       <main>
         <Container

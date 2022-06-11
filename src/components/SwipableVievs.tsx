@@ -1,9 +1,15 @@
 import { actionCreators, State } from "../state";
 import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "@reduxjs/toolkit";
 
 import SwipeableViews from "react-swipeable-views";
 import "swiper/css";
-import { bindActionCreators } from "@reduxjs/toolkit";
+
+//components
+import CurrentConditionsTable from "./CurrentConditionsTable";
+
+//MUI
+import Container from "@mui/material/Container";
 
 export default function SwipableVievs() {
   const dispatch = useDispatch();
@@ -18,55 +24,48 @@ export default function SwipableVievs() {
 
   const styles = {
     slide: {
-      padding: 15,
       minHeight: "100vh",
-      color: "#fff",
+      color: "black",
     },
-    slide1: {
-      background: "#FEA900",
-    },
-    slide2: {
-      background: "#B3DC4A",
-    },
-    slide3: {
-      background: "#6AC0FF",
+    container: {
+      width: "90%",
+      paddingLeft: "0px",
+      paddingRight: "0px",
+      textAlign: "center",
+      marginBottom: "20px",
     },
   };
 
-  const { weather } = fromRedux;
+  const { forecastday } = fromRedux.weather.forecast ?? {};
+  const { current } = fromRedux.weather ?? {};
 
   return (
     <SwipeableViews
       index={activeValue}
       onChangeIndex={(value: number) => handleChangeIndex(value)}
     >
-      <div style={{ ...styles.slide, ...styles.slide1 }}>
-        <img src={weather?.current?.condition.icon} alt="" />
-      </div>
-      <div style={{ ...styles.slide, ...styles.slide2 }}>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-          fugit animi, aperiam unde nemo corrupti quidem at enim voluptatum nisi
-          deserunt ipsa incidunt, voluptate tempora harum cumque iusto
-          repudiandae architecto! Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Eveniet quasi similique modi deserunt libero dicta
-          tenetur corporis, quae quam iusto iste exercitationem illo in, rem
-          reprehenderit, necessitatibus soluta. Quibusdam, explicabo at ullam
-          fugiat possimus molestias!
-        </p>
-      </div>
-      <div style={{ ...styles.slide, ...styles.slide3 }}>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-          fugit animi, aperiam unde nemo corrupti quidem at enim voluptatum nisi
-          deserunt ipsa incidunt, voluptate tempora harum cumque iusto
-          repudiandae architecto! Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Eveniet quasi similique modi deserunt libero dicta
-          tenetur corporis, quae quam iusto iste exercitationem illo in, rem
-          reprehenderit, necessitatibus soluta. Quibusdam, explicabo at ullam
-          fugiat possimus molestias!
-        </p>
-      </div>
+      {forecastday ? (
+        forecastday.map((item: any, index: number) => {
+          const { day } = item;
+
+          return (
+            <div key={index}>
+              <Container sx={{ ...styles.container, paddingTop: "96px" }}>
+                <p>
+                  <img src={day.condition.icon} alt={day.condition.text} />
+                </p>
+                <p>POOR FLYING CONDITIONS</p>
+              </Container>
+
+              <Container sx={{ ...styles.container }}>
+                <CurrentConditionsTable day={day} current={current} />
+              </Container>
+            </div>
+          );
+        })
+      ) : (
+        <></>
+      )}
     </SwipeableViews>
   );
 }

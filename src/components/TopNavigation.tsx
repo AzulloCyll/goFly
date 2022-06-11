@@ -21,7 +21,17 @@ export default function TopNavigation() {
   const { forecastday } = fromRedux.weather.forecast ?? {};
 
   return (
-    <Tabs value={activeValue} onChange={handleChange} variant="fullWidth">
+    <Tabs
+      value={activeValue}
+      onChange={handleChange}
+      variant="fullWidth"
+      sx={{
+        position: "fixed",
+        zIndex: 5000,
+        backgroundColor: "white",
+        width: "100%",
+      }}
+    >
       {forecastday?.map((item: any, index: number) => {
         return <Tab label={item.date} key={index} />;
       })}

@@ -1,10 +1,14 @@
 import { useState } from "react";
+
+//components
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import RestoreIcon from "@mui/icons-material/Restore";
+
+//icons
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import CloudOutlinedIcon from "@mui/icons-material/CloudOutlined";
 
 export default function FooterNavigation() {
   const [value, setValue] = useState(0);
@@ -18,7 +22,7 @@ export default function FooterNavigation() {
       }}
       sx={{ position: "fixed", bottom: 0, width: 1.0 }}
     >
-      <BottomNavigationAction label="Weather" icon={<RestoreIcon />} />
+      <BottomNavigationAction label="Weather" icon={<CloudOutlinedIcon />} />
       <BottomNavigationAction label="Map" icon={<MapOutlinedIcon />} />
       <BottomNavigationAction
         label="Settings"
