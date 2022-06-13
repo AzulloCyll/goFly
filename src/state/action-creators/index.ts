@@ -5,15 +5,6 @@ import { Action } from "../actions/index";
 //REDUX
 import { Dispatch } from "redux";
 
-export const setWeather = (data: Object) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.GET_ACTUAL_WEATHER,
-      payload: data,
-    });
-  };
-};
-
 export const setCurrentCoordinates = (data: { lat: number; lon: number }) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
@@ -23,10 +14,10 @@ export const setCurrentCoordinates = (data: { lat: number; lon: number }) => {
   };
 };
 
-export const setForecast = (data: Object) => {
+export const setOpenForecast = (data: Object) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
-      type: ActionType.GET_FORECAST,
+      type: ActionType.GET_OPEN_FORECAST,
       payload: data,
     });
   };
@@ -36,6 +27,15 @@ export const setCurrentActiveView = (data: number) => {
   return (dispatch: Dispatch<any>) => {
     dispatch({
       type: "SET_ACTIVE_VIEW",
+      payload: data,
+    });
+  };
+};
+
+export const setLocationData = (data: Object) => {
+  return (dispatch: Dispatch<any>) => {
+    dispatch({
+      type: ActionType.GET_LOCATION_DATA,
       payload: data,
     });
   };

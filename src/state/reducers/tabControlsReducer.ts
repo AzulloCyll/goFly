@@ -1,10 +1,13 @@
+import { ActionType } from "../action-types";
+import { Action } from "../actions/index";
+
 const initialState = {
   activeValue: 0,
 };
 
-const reducer = (state: any = initialState, action: any) => {
+const reducer = (state: any = initialState, action: Action) => {
   switch (action.type) {
-    case "SET_ACTIVE_VIEW":
+    case ActionType.SET_ACTIVE_VIEW:
       return { ...state, activeValue: action.payload };
 
     default:

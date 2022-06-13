@@ -1,18 +1,27 @@
 import { ActionType } from "../action-types/index";
 
-interface GetWeatherAction {
-  type: ActionType.GET_ACTUAL_WEATHER;
-  payload: Object;
-}
-
-interface getForecast {
-  type: ActionType.GET_FORECAST;
-  payload: Object;
-}
-
 interface GetCoordinatesAction {
   type: ActionType.SET_COORDINATES;
   payload: { lat: number; lon: number };
 }
 
-export type Action = GetWeatherAction | getForecast | GetCoordinatesAction;
+interface GetOpenForecastAction {
+  type: ActionType.GET_OPEN_FORECAST;
+  payload: Object;
+}
+
+interface GetLocationDataAction {
+  type: ActionType.GET_LOCATION_DATA;
+  payload: object;
+}
+
+interface GetActiveViewAction {
+  type: ActionType.SET_ACTIVE_VIEW;
+  payload: number;
+}
+
+export type Action =
+  | GetCoordinatesAction
+  | GetOpenForecastAction
+  | GetLocationDataAction
+  | GetActiveViewAction;

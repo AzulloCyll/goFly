@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { bindActionCreators } from "@reduxjs/toolkit";
+import { actionCreators, State } from "../state";
+import { useDispatch, useSelector } from "react-redux";
 
 //MUI
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { bindActionCreators } from "@reduxjs/toolkit";
-import { actionCreators, State } from "../state";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function TopNavigation() {
   const dispatch = useDispatch();
@@ -18,22 +19,28 @@ export default function TopNavigation() {
   };
 
   const { activeValue } = fromRedux.tabControls;
-  const { forecastday } = fromRedux.weather.forecast ?? {};
+  const { daily } = fromRedux.openWeather;
 
   return (
     <Tabs
       value={activeValue}
       onChange={handleChange}
-      variant="fullWidth"
+      variant="scrollable"
       sx={{
         position: "fixed",
         zIndex: 5000,
         backgroundColor: "white",
         width: "100%",
+        boxShadow: 1,
       }}
     >
-      {forecastday?.map((item: any, index: number) => {
-        return <Tab label={item.date} key={index} />;
+      {daily?.map((item: any, index: number) => {
+        return (
+          <Tab
+            label={new Date(item.dt * 1000).toLocaleDateString("pl-PL")}
+            key={index}
+          />
+        );
       })}
     </Tabs>
   );

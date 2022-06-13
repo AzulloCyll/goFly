@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
-import weatherReducer from "./weatherReducer";
 import coordinatesReducer from "./coordinatesReducer";
 import tabControlsReducer from "./tabControlsReducer";
+import openWeatherReducer from "./openWeatherReducer";
+import geoLocationReducer from "./geoLocationReducer";
 
 const reducers = combineReducers({
-  weather: weatherReducer,
   coordinates: coordinatesReducer,
   tabControls: tabControlsReducer,
+  openWeather: openWeatherReducer,
+  geoLocation: geoLocationReducer,
 });
 
 export default reducers;

@@ -1,19 +1,38 @@
-import { State } from "../state";
-import { useSelector } from "react-redux";
+import { actionCreators, State } from "../state";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "@reduxjs/toolkit";
 
 //components
 import TopNavigation from "./TopNavigation";
 
+//utils
+import { findCurrenGPSLocation } from "../communication/getGPS";
+import { getOpenForecast } from "../communication/weatherApi";
+import { getLocation } from "../communication/geocodingApi";
+
 //MUI
-import { IconButton, Paper } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+
+//icons
 import ModeStandbyOutlinedIcon from "@mui/icons-material/ModeStandbyOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
 
 export default function Header() {
   const fromRedux = useSelector((state: State) => state);
+  const dispatch = useDispatch();
+  const { setCurrentCoordinates, setOpenForecast, setLocationData } =
+    bindActionCreators(actionCreators, dispatch);
 
-  const { name, country } = fromRedux.weather?.location || {};
+  const { name, country, state } = fromRedux.geoLocation ?? {};
+  const stateTrimmed = state && state.split(" ")[0];
+  const { lat, lon } = fromRedux.coordinates;
+
+  const setCurrentCoords = () => {
+    findCurrenGPSLocation(setCurrentCoordinates);
+    getOpenForecast(lat, lon, setOpenForecast);
+    getLocation(lat, lon, setLocationData);
+  };
 
   return (
     <Paper
@@ -23,18 +42,14 @@ export default function Header() {
         zIndex: 5000,
       }}
     >
-      <Paper component="form">
+      <Paper component="form" sx={{ borderRadius: 0 }}>
         <IconButton>
           <SearchIcon />
         </IconButton>
         {name && country && (
-          <InputBase
-            size="small"
-            disabled
-            defaultValue={`${name}, ${country}`}
-          />
+          <span>{`${name}, ${stateTrimmed}, ${country}`}</span>
         )}
-        <IconButton sx={{ float: "right" }}>
+        <IconButton sx={{ float: "right" }} onClick={setCurrentCoords}>
           <ModeStandbyOutlinedIcon />
         </IconButton>
       </Paper>

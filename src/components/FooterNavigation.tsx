@@ -20,7 +20,7 @@ export default function FooterNavigation() {
         setValue(newValue);
         console.log(value);
       }}
-      sx={{ position: "fixed", bottom: 0, width: 1.0 }}
+      sx={{ position: "fixed", bottom: 0, width: 1.0, boxShadow: 3 }}
     >
       <BottomNavigationAction label="Weather" icon={<CloudOutlinedIcon />} />
       <BottomNavigationAction label="Map" icon={<MapOutlinedIcon />} />

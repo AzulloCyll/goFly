@@ -5,7 +5,7 @@ interface GPSPos {
   };
 }
 
-export const findCurrenGPSLocation = (setCurrentCoordinates: Function) => {
+export const findCurrenGPSLocation = (callback: Function) => {
   function success(position: GPSPos) {
     const { latitude, longitude } = position.coords;
 
@@ -13,7 +13,7 @@ export const findCurrenGPSLocation = (setCurrentCoordinates: Function) => {
       lat: latitude,
       lon: longitude,
     };
-    setCurrentCoordinates(result);
+    callback(result);
   }
   function error() {
     console.log("Unable to retrieve your location");

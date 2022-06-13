@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import { bindActionCreators } from "@reduxjs/toolkit";
 
 //utils
-import { getForecast, getWeather } from "./communication/weatherApi";
+import { getOpenForecast } from "./communication/weatherApi";
 import { findCurrenGPSLocation } from "./communication/getGPS";
+import { getLocation } from "./communication/geocodingApi";
 
 //components
 import Header from "./components/Header";
@@ -19,18 +20,16 @@ import Container from "@mui/material/Container";
 
 export default function App() {
   const dispatch = useDispatch();
-  const { setWeather, setCurrentCoordinates, setForecast } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const { setCurrentCoordinates, setOpenForecast, setLocationData } =
+    bindActionCreators(actionCreators, dispatch);
 
   const fromRedux = useSelector((state: State) => state);
   const { lat, lon } = fromRedux.coordinates;
 
   useEffect(() => {
     if (lat && lon) {
-      getWeather(lat, lon, setWeather);
-      getForecast(lat, lon, setForecast);
+      getOpenForecast(lat, lon, setOpenForecast);
+      getLocation(lat, lon, setLocationData);
     } else findCurrenGPSLocation(setCurrentCoordinates);
   }, [lat, lon]);
 
