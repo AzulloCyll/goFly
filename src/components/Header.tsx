@@ -7,7 +7,6 @@ import TopNavigation from "./TopNavigation";
 
 //utils
 import { findCurrenGPSLocation } from "../communication/getGPS";
-import { getOpenForecast } from "../communication/weatherApi";
 import { getLocation } from "../communication/geocodingApi";
 
 //MUI
@@ -21,8 +20,10 @@ import SearchIcon from "@mui/icons-material/Search";
 export default function Header() {
   const fromRedux = useSelector((state: State) => state);
   const dispatch = useDispatch();
-  const { setCurrentCoordinates, setOpenForecast, setLocationData } =
-    bindActionCreators(actionCreators, dispatch);
+  const { setCurrentCoordinates, setLocationData } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   const { name, country, state } = fromRedux.geoLocation ?? {};
   const stateTrimmed = state && state.split(" ")[0];
@@ -30,7 +31,6 @@ export default function Header() {
 
   const setCurrentCoords = () => {
     findCurrenGPSLocation(setCurrentCoordinates);
-    getOpenForecast(lat, lon, setOpenForecast);
     getLocation(lat, lon, setLocationData);
   };
 

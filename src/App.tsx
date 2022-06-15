@@ -20,17 +20,22 @@ import Container from "@mui/material/Container";
 
 export default function App() {
   const dispatch = useDispatch();
-  const { setCurrentCoordinates, setOpenForecast, setLocationData } =
-    bindActionCreators(actionCreators, dispatch);
+  const {
+    setCurrentCoordinates,
+    setOpenForecast,
+    setLocationData,
+    setSlicedHourly,
+  } = bindActionCreators(actionCreators, dispatch);
 
   const fromRedux = useSelector((state: State) => state);
   const { lat, lon } = fromRedux.coordinates;
 
   useEffect(() => {
     if (lat && lon) {
-      getOpenForecast(lat, lon, setOpenForecast);
+      getOpenForecast(lat, lon, setOpenForecast, setSlicedHourly);
       getLocation(lat, lon, setLocationData);
     } else findCurrenGPSLocation(setCurrentCoordinates);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lat, lon]);
 
   return (

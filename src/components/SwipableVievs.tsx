@@ -11,13 +11,16 @@ import HourlyCodnitionsTable from "./HourlyCodnitionsTable";
 
 //MUI
 import Container from "@mui/material/Container";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 export default function SwipableVievs() {
   const dispatch = useDispatch();
   const { setCurrentActiveView } = bindActionCreators(actionCreators, dispatch);
   const fromRedux = useSelector((state: State) => state);
 
-  const { activeValue } = fromRedux.tabControls;
+  const { daily } = fromRedux.openWeather ?? {};
+  const slicedHourly = fromRedux.openWeather.slicedHourly ?? {};
+  const { activeValue } = fromRedux.tabControls ?? {};
 
   const handleChangeIndex = (value: number) => {
     setCurrentActiveView(value);
@@ -37,12 +40,12 @@ export default function SwipableVievs() {
     },
   };
 
-  const { daily } = fromRedux.openWeather ?? {};
-
   return (
     <SwipeableViews
       index={activeValue}
+      disableLazyLoading={false}
       onChangeIndex={(value: number) => handleChangeIndex(value)}
+      resistance={true}
     >
       {daily ? (
         daily.map((item: any, index: number) => {
@@ -65,10 +68,13 @@ export default function SwipableVievs() {
                 <CurrentConditionsTable weather={item} />
               </Container>
 
-              <Container sx={{ ...styles.container }}> Dupa</Container>
-
               <Container sx={{ ...styles.container, paddingBottom: "64px" }}>
-                <HourlyCodnitionsTable />
+                {slicedHourly[index] ? (
+                  <ArrowDownwardIcon />
+                ) : (
+                  <p>NO DATA FOR THAT DAY</p>
+                )}
+                <HourlyCodnitionsTable items={slicedHourly[index]} />
               </Container>
             </div>
           );

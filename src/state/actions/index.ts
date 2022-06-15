@@ -12,7 +12,7 @@ interface GetOpenForecastAction {
 
 interface GetLocationDataAction {
   type: ActionType.GET_LOCATION_DATA;
-  payload: object;
+  payload: Object;
 }
 
 interface GetActiveViewAction {
@@ -20,8 +20,14 @@ interface GetActiveViewAction {
   payload: number;
 }
 
+interface SetSlicedHourlyForecastAction {
+  type: ActionType.SET_SLICED_HOURLY_FORECAST;
+  payload: any;
+}
+
 export type Action =
   | GetCoordinatesAction
   | GetOpenForecastAction
   | GetLocationDataAction
-  | GetActiveViewAction;
+  | GetActiveViewAction
+  | SetSlicedHourlyForecastAction;

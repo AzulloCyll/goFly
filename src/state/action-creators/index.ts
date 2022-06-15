@@ -40,3 +40,12 @@ export const setLocationData = (data: Object) => {
     });
   };
 };
+
+export const setSlicedHourly = (data: any) => {
+  return (dispatch: Dispatch<any>) => {
+    dispatch({
+      type: ActionType.SET_SLICED_HOURLY_FORECAST,
+      payload: data,
+    });
+  };
+};
