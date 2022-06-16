@@ -9,7 +9,7 @@ import AirOutlinedIcon from "@mui/icons-material/AirOutlined";
 import WindPowerIcon from "@mui/icons-material/WindPower";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import ThermostatOutlinedIcon from "@mui/icons-material/ThermostatOutlined";
-import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
+import ThunderstormOutlinedIcon from "@mui/icons-material/ThunderstormOutlined";
 import CloudOutlinedIcon from "@mui/icons-material/CloudOutlined";
 import WbTwilightIcon from "@mui/icons-material/WbTwilight";
 
@@ -140,7 +140,7 @@ export default function CurrentConditionsTable(props: any) {
           display="block"
           sx={{ paddingTop: "3px", paddingBottom: "3px", width: "100%" }}
         >
-          <ThunderstormIcon sx={{ color: "gray", float: "left" }} />
+          <ThunderstormOutlinedIcon sx={{ color: "gray", float: "left" }} />
           <Typography sx={{ color: "#3b3b3b", float: "left", paddingLeft: 4 }}>
             Precipitation
           </Typography>

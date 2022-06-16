@@ -7,10 +7,13 @@ import "swiper/css";
 
 //components
 import CurrentConditionsTable from "./CurrentConditionsTable";
+import LeftColumn from "./LeftColumn";
 import HourlyCodnitionsTable from "./HourlyCodnitionsTable";
 
 //MUI
 import Container from "@mui/material/Container";
+
+//icons
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 export default function SwipableVievs() {
@@ -68,13 +71,23 @@ export default function SwipableVievs() {
                 <CurrentConditionsTable weather={item} />
               </Container>
 
-              <Container sx={{ ...styles.container, paddingBottom: "64px" }}>
+              <Container
+                sx={{
+                  ...styles.container,
+                  paddingBottom: "64px",
+                  margin: 0,
+                  width: 1,
+                }}
+              >
                 {slicedHourly[index] ? (
-                  <ArrowDownwardIcon />
+                  <>
+                    <ArrowDownwardIcon />
+                    <LeftColumn />
+                    <HourlyCodnitionsTable items={slicedHourly[index]} />
+                  </>
                 ) : (
                   <p>NO DATA FOR THAT DAY</p>
                 )}
-                <HourlyCodnitionsTable items={slicedHourly[index]} />
               </Container>
             </div>
           );
