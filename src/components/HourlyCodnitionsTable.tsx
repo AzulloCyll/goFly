@@ -1,5 +1,4 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import SwipeableViews from "react-swipeable-views";
 
 //MUI
 import Paper from "@mui/material/Paper";
@@ -7,25 +6,34 @@ import Paper from "@mui/material/Paper";
 export default function HourlyCodnitionsTable(props: any) {
   const { items } = props;
 
+  const styles = {
+    paper: {
+      borderBottom: "1px solid grey",
+      borderRight: "1px solid grey",
+      borderRadius: "0",
+      height: "31px",
+      display: "flex",
+      flexDirection: "flex-end",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  };
+
   return (
-    <div style={{ width: "100%" }}>
-      <Swiper
-        spaceBetween={0}
-        slidesPerView={3}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
+    <div style={{ width: "100%", marginBottom: "0" }}>
+      <SwipeableViews
+        resistance={true}
+        enableMouseEvents
+        hysteresis={0.9}
+        ignoreNativeScroll={true}
+        containerStyle={{}}
+        slideStyle={{}}
       >
         {items?.map((item: any, index: number) => {
           return (
-            <SwiperSlide
-              key={index}
-              style={{
-                display: "inline-block",
-                color: "red",
-                overflow: "hidden",
-              }}
-            >
+            <div key={index}>
               <Paper
+                elevation={0}
                 sx={{
                   borderRadius: "0",
                   height: "50px",
@@ -40,33 +48,26 @@ export default function HourlyCodnitionsTable(props: any) {
                   ":" +
                   new Date(item.dt * 1000).toLocaleTimeString().split(":")[1]}
               </Paper>
-              <Paper
-                sx={{
-                  borderBottom: "1px solid grey",
-                  borderRight: "1px solid grey",
-
-                  borderRadius: "0",
-                  paddingTop: "5px",
-                  paddingBottom: "5px",
-                }}
-              >
-                {Math.floor(item.wind_speed)}
+              <Paper sx={{ ...styles.paper }}>
+                {Math.floor(item.wind_speed)} km/h
               </Paper>
-              <Paper
-                sx={{
-                  borderBottom: "1px solid grey",
-                  borderRight: "1px solid grey",
-                  borderRadius: "0",
-                  paddingTop: "5px",
-                  paddingBottom: "5px",
-                }}
-              >
-                {Math.floor(item.wind_gust)}
+              <Paper sx={{ ...styles.paper }}>
+                {Math.floor(item.wind_gust)} km/h
               </Paper>
-            </SwiperSlide>
+              <Paper sx={{ ...styles.paper }}>{item.wind_deg}&deg;</Paper>
+              <Paper sx={{ ...styles.paper }}>
+                {Math.floor(item.temp)}&deg;C
+              </Paper>
+              <Paper sx={{ ...styles.paper }}>
+                {Math.round(item.pop * 100)}%
+              </Paper>
+              <Paper elevation={0} sx={{ ...styles.paper }}>
+                {item.clouds}%
+              </Paper>
+            </div>
           );
         })}
-      </Swiper>
+      </SwipeableViews>
     </div>
   );
 }

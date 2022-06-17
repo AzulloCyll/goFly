@@ -11,17 +11,33 @@ import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import ThermostatOutlinedIcon from "@mui/icons-material/ThermostatOutlined";
 import ThunderstormOutlinedIcon from "@mui/icons-material/ThunderstormOutlined";
 import CloudOutlinedIcon from "@mui/icons-material/CloudOutlined";
-import WbTwilightIcon from "@mui/icons-material/WbTwilight";
 
 export default function LeftColumn() {
+  const styles = {
+    paper: {
+      height: "32px",
+      borderRadius: "0",
+      display: "flex",
+      flexDirection: "flex-end",
+      justifyContent: "right",
+      alignItems: "center",
+    },
+    icon: {
+      color: "gray",
+      paddingRight: "5px",
+    },
+  };
+
   return (
     <div style={{ marginTop: "10px" }}>
       <Paper
+        elevation={0}
         sx={{
           width: "16.5%",
           display: "inline-block",
           float: "left",
           borderRadius: 0,
+          borderBottom: "1px solid gray",
         }}
       >
         <Paper
@@ -38,75 +54,25 @@ export default function LeftColumn() {
         >
           <WatchLaterOutlinedIcon sx={{ marginRight: "5px" }} />
         </Paper>
-        <Paper elevation={0} sx={{ textAlign: "right" }}>
-          <AirOutlinedIcon
-            sx={{
-              color: "gray",
-              marginRight: "5px",
-              marginTop: "3px",
-              marginBottom: "2px",
-            }}
-          />
-        </Paper>
-        <Paper elevation={0} sx={{ textAlign: "right" }}>
-          <WindPowerIcon
-            sx={{
-              color: "gray",
-              marginRight: "5px",
-              marginTop: "2px",
-              marginBottom: "2px",
-            }}
-          />
-        </Paper>
-        <Paper elevation={0} sx={{ textAlign: "right" }}>
-          <ExploreOutlinedIcon
-            sx={{
-              color: "gray",
-              marginRight: "5px",
-              marginTop: "2px",
-              marginBottom: "2px",
-            }}
-          />
-        </Paper>
-        <Paper elevation={0} sx={{ textAlign: "right" }}>
-          <ThermostatOutlinedIcon
-            sx={{
-              color: "gray",
-              marginRight: "5px",
-              marginTop: "2px",
-              marginBottom: "2px",
-            }}
-          />
-        </Paper>
-        <Paper elevation={0} sx={{ textAlign: "right" }}>
-          <ThunderstormOutlinedIcon
-            sx={{
-              color: "gray",
-              marginRight: "5px",
-              marginTop: "2px",
-              marginBottom: "2px",
-            }}
-          />
-        </Paper>
-        <Paper elevation={0} sx={{ textAlign: "right" }}>
-          <CloudOutlinedIcon
-            sx={{
-              color: "gray",
-              marginRight: "5px",
-              marginTop: "2px",
-              marginBottom: "2px",
-            }}
-          />
-        </Paper>
-        <Paper elevation={0} sx={{ textAlign: "right" }}>
-          <WbTwilightIcon
-            sx={{
-              color: "gray",
-              marginRight: "5px",
-              marginTop: "2px",
-              marginBottom: "2px",
-            }}
-          />
+        <Paper elevation={0}>
+          <Paper elevation={0} sx={{ ...styles.paper }}>
+            <AirOutlinedIcon sx={{ ...styles.icon }} />
+          </Paper>
+          <Paper elevation={0} sx={{ ...styles.paper }}>
+            <WindPowerIcon sx={{ ...styles.icon }} />
+          </Paper>
+          <Paper elevation={0} sx={{ ...styles.paper }}>
+            <ExploreOutlinedIcon sx={{ ...styles.icon }} />
+          </Paper>
+          <Paper elevation={0} sx={{ ...styles.paper }}>
+            <ThermostatOutlinedIcon sx={{ ...styles.icon }} />
+          </Paper>
+          <Paper elevation={0} sx={{ ...styles.paper }}>
+            <ThunderstormOutlinedIcon sx={{ ...styles.icon }} />
+          </Paper>
+          <Paper elevation={0} sx={{ ...styles.paper }}>
+            <CloudOutlinedIcon sx={{ ...styles.icon }} />
+          </Paper>
         </Paper>
       </Paper>
     </div>

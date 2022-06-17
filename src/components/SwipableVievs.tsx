@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "@reduxjs/toolkit";
 
 import SwipeableViews from "react-swipeable-views";
-import "swiper/css";
 
 //components
 import CurrentConditionsTable from "./CurrentConditionsTable";
@@ -46,7 +45,6 @@ export default function SwipableVievs() {
   return (
     <SwipeableViews
       index={activeValue}
-      disableLazyLoading={false}
       onChangeIndex={(value: number) => handleChangeIndex(value)}
       resistance={true}
     >
@@ -74,7 +72,7 @@ export default function SwipableVievs() {
               <Container
                 sx={{
                   ...styles.container,
-                  paddingBottom: "64px",
+                  paddingBottom: "56px",
                   margin: 0,
                   width: 1,
                 }}
