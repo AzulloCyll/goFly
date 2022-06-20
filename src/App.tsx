@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "./state";
@@ -43,16 +43,7 @@ export default function App() {
       <Header />
 
       <main>
-        <Container
-          maxWidth="xs"
-          sx={{
-            overflow: "auto",
-            height: "100vh",
-            zIndex: 1,
-            margin: 0,
-            padding: 0,
-          }}
-        >
+        <Container className="Container">
           <SwipableVievs />
         </Container>
       </main>

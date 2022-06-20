@@ -24,10 +24,9 @@ export default function HourlyCodnitionsTable(props: any) {
       <SwipeableViews
         resistance={true}
         enableMouseEvents
-        hysteresis={0.9}
         ignoreNativeScroll={true}
-        containerStyle={{}}
-        slideStyle={{}}
+        containerStyle={{ width: "100%" }}
+        slideStyle={{ width: "33.3333333333333%" }}
       >
         {items?.map((item: any, index: number) => {
           return (
