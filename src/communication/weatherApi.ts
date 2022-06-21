@@ -1,5 +1,5 @@
-import { Today } from "@mui/icons-material";
 import axios from "axios";
+
 const KEY2 = process.env.REACT_APP_WEATHER_API_KEY2;
 
 export const getOpenForecast = async (
@@ -10,7 +10,6 @@ export const getOpenForecast = async (
 ) => {
   try {
     const URL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${KEY2}&units=metric`;
-    console.log(URL);
     const result = await axios.get(URL);
     const splicedHourly = spliceData(result.data.hourly);
     callback(result.data);

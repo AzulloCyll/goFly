@@ -1,4 +1,4 @@
-import "./App.scss";
+import "./App.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "./state";
@@ -38,12 +38,22 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lat, lon]);
 
+  const styles = {
+    container: {
+      overflow: "auto",
+      height: "100vh",
+      zIndex: 1,
+      margin: 0,
+      padding: 0,
+    },
+  };
+
   return (
     <div className="App">
       <Header />
 
       <main>
-        <Container className="Container">
+        <Container sx={{ ...styles.container }}>
           <SwipableVievs />
         </Container>
       </main>

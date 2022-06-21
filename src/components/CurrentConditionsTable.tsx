@@ -24,6 +24,7 @@ export default function CurrentConditionsTable(props: any) {
   return (
     <div>
       <Box
+        className="Box"
         sx={{
           backgroundColor: "white",
           borderRadius: "10px",
@@ -32,7 +33,10 @@ export default function CurrentConditionsTable(props: any) {
         }}
       >
         <Stack spacing={2} direction="row" justifyContent="space-between">
-          <Typography sx={{ fontWeight: "bold", color: "#151B54" }}>
+          <Typography
+            className="Typography"
+            sx={{ fontWeight: "700", color: "#151b54" }}
+          >
             Wind
           </Typography>
           <Typography variant="caption">(at ground)</Typography>
