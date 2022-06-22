@@ -24,16 +24,16 @@ export const setOpenForecast = (data: Object) => {
 };
 
 export const setCurrentActiveView = (data: number) => {
-  return (dispatch: Dispatch<any>) => {
+  return (dispatch: Dispatch<Action>) => {
     dispatch({
-      type: "SET_ACTIVE_VIEW",
+      type: ActionType.SET_ACTIVE_VIEW,
       payload: data,
     });
   };
 };
 
 export const setLocationData = (data: Object) => {
-  return (dispatch: Dispatch<any>) => {
+  return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.GET_LOCATION_DATA,
       payload: data,
@@ -42,7 +42,7 @@ export const setLocationData = (data: Object) => {
 };
 
 export const setSlicedHourly = (data: any) => {
-  return (dispatch: Dispatch<any>) => {
+  return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.SET_SLICED_HOURLY_FORECAST,
       payload: data,
